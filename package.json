@@ -1,0 +1,30 @@
+{
+  "name": "360-videolink-stream",
+  "version": "1.0.0",
+  "description": "codebase for streming live 360 footage through webRTC",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nf start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dealerpriest/360-videolink-stream.git"
+  },
+  "keywords": [
+    "360",
+    "livestream",
+    "VR",
+    "video"
+  ],
+  "author": "Gunnar Oledal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dealerpriest/360-videolink-stream/issues"
+  },
+  "homepage": "https://github.com/Dealerpriest/360-videolink-stream#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "foreman": "2.0.0",
+  }
+}
