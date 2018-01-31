@@ -5,8 +5,15 @@ const path = require('path');
 
 const PORT = process.env.PORT || 8443;
 const INDEX = path.join(__dirname, 'index.html');
+// const JSPATH = '/js/';
 
 server = express()
+    .use('/camera', (req, res) => {
+      res.sendFile(path.join(__dirname, 'camera.html'));
+    })
+    .use('/js', (req, res) => {
+      res.sendFile(path.join(__dirname, req.originalUrl));
+    })
     .use((req, res) => res.sendFile(INDEX))
     .listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
@@ -16,7 +23,7 @@ let clients = [];
 
 io.use((socket, next) => {
     let token = socket.handshake.query.token;
-    if (token !== 'abc') {
+    if (token !== 'client-123' && token !== 'camera-456') {
       console.log('wrong token');
       return next(new Error('authentication error'));
     }

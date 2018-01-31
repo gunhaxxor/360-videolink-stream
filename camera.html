@@ -5,7 +5,7 @@
     <title>360 stream server</title>
   </head>
   <body>
-    <h1>I am an index file. Hello!</h1>
+    <h1>I am the camera file. Hello!</h1>
 
     <p id='socket-data'>No message</p>
     <script src= "https://webrtc.github.io/adapter/adapter-latest.js"></script>
@@ -13,11 +13,11 @@
     <script>
       const socket = io({
           query: {
-              token: 'client-123'
+              token: 'camera-456'
           }
       });
     </script>
     <script src="/js/main.js"></script>
-    <script src="/js/client.js"></script>
+    <script src="/js/camera.js"></script>
   </body>
 </html>
