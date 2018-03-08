@@ -12,4 +12,5 @@
 [ ] - Handle which client gets access to robot control.
 [ ] - Chattfunktion
 [ ] - Kartoverlay
+
 [ ] - Nice interface
