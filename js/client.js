@@ -5,13 +5,13 @@ let textReceiver = document.getElementById('text-receive-area');
 robot = createPeerConection();
 robot.onicecandidate = handleIceCandidate;
 
-robot.ondatachannel = (evt) => {
+robot.ondatachannel = evt => {
   console.log('ondatachannel event:');
   console.log(evt);
   let receiveChannel = event.channel;
-  if(receiveChannel.label === 'chatChannel'){
+  if (receiveChannel.label === 'chatChannel') {
     console.log('chatChannel added');
-    receiveChannel.onmessage = function(event){
+    receiveChannel.onmessage = function(event) {
       console.log('datachannel message received: ' + event.data);
       textReceiver.value = event.data;
     };
@@ -20,42 +20,50 @@ robot.ondatachannel = (evt) => {
       console.log('input trigger');
       var data = textReceiver.value;
       console.log('readyState is ' + receiveChannel.readyState);
-      if(receiveChannel.readyState === 'open'){
+      if (receiveChannel.readyState === 'open') {
         receiveChannel.send(data);
       }
     };
-  }else if(receiveChannel.label === 'robotControlChannel'){
+  } else if (receiveChannel.label === 'robotControlChannel') {
     console.log('robotControlChannel added');
-    document.onkeydown = (event) => {
+    document.onkeydown = event => {
       console.log('keydown');
       let keyValue = event.key;
-      if(!(keyValue === 'ArrowLeft' 
-      || keyValue === 'ArrowUp' 
-      || keyValue === 'ArrowRight' 
-      || keyValue === 'ArrowDown')){
+      if (
+        !(
+          keyValue === 'ArrowLeft' ||
+          keyValue === 'ArrowUp' ||
+          keyValue === 'ArrowRight' ||
+          keyValue === 'ArrowDown'
+        )
+      ) {
         return;
       }
-      if(receiveChannel.readyState === 'open'){
+      if (receiveChannel.readyState === 'open') {
         console.log('keypressed');
         receiveChannel.send(keyValue);
       }
-    }
-    document.onkeyup = (event) => {
+    };
+    document.onkeyup = event => {
       let keyValue = event.key;
-      if(!(keyValue === 'ArrowLeft' 
-      || keyValue === 'ArrowUp' 
-      || keyValue === 'ArrowRight' 
-      || keyValue === 'ArrowDown')){
+      if (
+        !(
+          keyValue === 'ArrowLeft' ||
+          keyValue === 'ArrowUp' ||
+          keyValue === 'ArrowRight' ||
+          keyValue === 'ArrowDown'
+        )
+      ) {
         return;
       }
-      if(receiveChannel.readyState === 'open'){
+      if (receiveChannel.readyState === 'open') {
         receiveChannel.send('None');
       }
-    }
+    };
   }
-}
+};
 
-let mediaConstraints = {audio: false, video: true};
+let mediaConstraints = { audio: false, video: true };
 // let mediaPromise = getLocalMedia().then(addOutgoingStream);
 
 socket.on('robotConnected', () => {
@@ -68,39 +76,38 @@ socket.on('robotConnected', () => {
 //   mediaPromise.then(createOfferAndSend);
 // });
 
-
-socket.on('offer', (data) => {
+socket.on('offer', data => {
   el.innerHTML = 'RTC offer message: ' + data;
-  if(msg = JSON.parse(data)){
+  if ((msg = JSON.parse(data))) {
     console.log('RTC offer message: ');
     console.log(msg);
-    if(msg.offer){
+    if (msg.offer) {
       let handleOfferResult = handleOfferOrAnswer(robot, msg.offer).then(() => {
-        console.log("offer handled. Continuing to create answer");
+        console.log('offer handled. Continuing to create answer');
         return createAnswerAndSend(robot);
         // return mediaPromise.then(createAnswerAndSend);
       });
       console.log(handleOfferResult);
     }
   }
-})
+});
 
-socket.on('ice', (data) => {
+socket.on('ice', data => {
   let msg;
   el.innerHTML = 'RTC ice candidate received: ' + data;
-  if(msg = JSON.parse(data)){
+  if ((msg = JSON.parse(data))) {
     console.log('RTC ice candidate received:');
     console.log(msg);
-    if(msg.candidate){
+    if (msg.candidate) {
       handleIncomingIce(robot, msg.candidate);
     }
   }
-})
+});
 
 socket.on('signalingMessage', function(data) {
   let msg;
   el.innerHTML = 'socket signaling message received: ' + data;
-  if(msg = JSON.parse(data)){
+  if ((msg = JSON.parse(data))) {
     console.log('socket signaling message received');
     console.log(msg);
   }

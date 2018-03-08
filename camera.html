@@ -1,30 +1,37 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>360 stream server</title>
-  </head>
-  <body>
-    <h1>I am the camera file. Hello!</h1>
 
-    <p>Robot command: <span id="robot-command" style="font-weight: bold;">None</span></p>
-    <textarea name="text-channel" id="text-send-area" cols="30" rows="10"></textarea>
-    <p id='socket-data'>No message</p>
-    <p>Local:</p>
-    <video id="local-video-stream" style="display:none;" autoplay muted > </video>
-    <p>Remote:</p>
-    <video id="remote-video-stream" autoplay muted> </video>
+<head>
+  <meta charset="UTF-8">
+  <title>360 stream server</title>
+</head>
 
-    <script src= "https://webrtc.github.io/adapter/adapter-latest.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-      const socket = io({
-          query: {
-              token: 'camera-456'
-          }
-      });
-    </script>
-    <script src="/js/main.js"></script>
-    <script src="/js/camera.js"></script>
-  </body>
+<body>
+  <h1>I am the camera file. Hello!</h1>
+
+  <p>Robot command:
+    <span id="robot-command" style="font-weight: bold;">None</span>
+  </p>
+  <textarea name="text-channel" id="text-send-area" cols="30" rows="10"></textarea>
+  <p id='socket-data'>No message</p>
+  <p>Local:</p>
+  <div id="local-video-pool">
+  </div>
+  <video id="local-video-stream" style="display:none;" autoplay muted> </video>
+  <p>Remote:</p>
+  <video id="remote-video-stream" autoplay muted> </video>
+
+  <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io({
+      query: {
+        token: 'camera-456'
+      }
+    });
+  </script>
+  <script src="/js/main.js"></script>
+  <script src="/js/camera.js"></script>
+</body>
+
 </html>

@@ -1,56 +1,60 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>360 stream server</title>
-  </head>
-  <body>
-    <h1>I am the client file. Hello!</h1>
 
-    <p id='socket-data'>No message</p>
-    
-    <textarea name="text-channel" id="text-receive-area" cols="30" rows="10"></textarea>
+<head>
+  <meta charset="UTF-8">
+  <title>360 stream server</title>
+</head>
 
-    <p>Local:</p>
-    <video id="local-video-stream" autoplay muted > </video>
+<body>
+  <h1>I am the client file. Hello!</h1>
 
-    <p>Remote:</p>
-    <video id="remote-video-stream" style="display:auto;" autoplay> </video>
+  <p id='socket-data'>No message</p>
 
-    <div id="threeContainer"></div>
+  <textarea name="text-channel" id="text-receive-area" cols="30" rows="10"></textarea>
 
-    <script src= "https://webrtc.github.io/adapter/adapter-latest.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="https://threejs.org/build/three.min.js"></script>
-    <script src="/lib/js/StereoEffect.js"></script>
-    <script src="/lib/js/OrbitControls.js"></script>
-    <script src="/lib/js/thetaView_Adjustable.js"></script>
-    <script src="/lib/js/stitchHelper.js"></script>
+  <p>Local:</p>
+  <video id="local-video-stream" autoplay muted> </video>
 
-    <script src="/js/threeScene.js"></script>
-    <script>
-      const socket = io({
-          query: {
-              token: 'client-123'
-          }
-      });
+  <p>Remote:</p>
+  <div id="remote-video-pool"></div>
+  <video id="remote-video-stream" style="display:auto;" autoplay> </video>
 
-      window.addEventListener( 'DOMContentLoaded', function(){
+  <div id="threeContainer"></div>
 
-        // animate.init();
+  <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://threejs.org/build/three.min.js"></script>
+  <script src="/lib/js/StereoEffect.js"></script>
+  <script src="/lib/js/OrbitControls.js"></script>
+  <script src="/lib/js/thetaView_Adjustable.js"></script>
+  <script src="/lib/js/stitchHelper.js"></script>
 
-        initThree();
-        theta_view('remote-video-stream');
-        // HUDSystem.init();
-        // stitchHelper.init();
-        //userMedia.init();
+  <script src="/js/threeScene.js"></script>
+  <script>
+    const socket = io({
+      query: {
+        token: 'client-123'
+      }
+    });
 
-        // animate.checkDoms();//Just check if there is a need to show Angle with HUD//
+    window.addEventListener('DOMContentLoaded', function () {
 
-        //HLS.init();
-      });
-    </script>
-    <script src="/js/main.js"></script>
-    <script src="/js/client.js"></script>
-  </body>
+      // animate.init();
+
+      initThree();
+      theta_view('remote-video-stream');
+      // HUDSystem.init();
+      // stitchHelper.init();
+      //userMedia.init();
+
+      // animate.checkDoms();//Just check if there is a need to show Angle with HUD//
+
+      //HLS.init();
+    });
+  </script>
+  <script src="/js/main.js"></script>
+  <script src="/js/client.js"></script>
+</body>
+
 </html>
