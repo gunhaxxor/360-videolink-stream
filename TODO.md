@@ -7,8 +7,8 @@
 [ ] - Welcome screen with login
 [X] - separate page for 360 camera
 [ ] - small localvideo for user
-[ ] - try 4K streaming
-[_] - Send control messages for controlling robot. RTCPeerConnection.
+[X] - try 4K streaming
+[X] - Send control messages for controlling robot. RTCPeerConnection.
 [ ] - Handle which client gets access to robot control.
 [ ] - Chattfunktion
 [ ] - Kartoverlay
