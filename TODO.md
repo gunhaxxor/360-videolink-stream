@@ -6,7 +6,7 @@
 [ ] - store credentials in env-file.
 [ ] - Welcome screen with login
 [X] - separate page for 360 camera
-[ ] - small localvideo for user
+[x] - small localvideo for user
 [X] - try 4K streaming
 [X] - Send control messages for controlling robot. RTCPeerConnection.
 [ ] - Handle which client gets access to robot control.
