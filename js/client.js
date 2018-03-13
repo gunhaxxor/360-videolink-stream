@@ -70,12 +70,6 @@ socket.on('robotConnected', () => {
   console.log('robot is available according to server');
 });
 
-// socket.on('clientsconnected', () => {
-//   console.log('clients connected. I\'m the client so let\'s initiate signaling');
-//   // createOfferAndSend();
-//   mediaPromise.then(createOfferAndSend);
-// });
-
 socket.on('offer', data => {
   el.innerHTML = 'RTC offer message: ' + data;
   if ((msg = JSON.parse(data))) {

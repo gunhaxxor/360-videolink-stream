@@ -80,6 +80,12 @@ function addOutgoingStream(pc, stream) {
   console.log('adding outgoing stream:');
   console.log(stream);
   stream.getTracks().forEach(track => {
+    console.log('track: ');
+    console.log(track);
+    let caps = track.getCapabilities();
+    console.log('capabilities: ');
+    console.log(caps);
+
     pc.addTrack(track, stream);
   });
   //TODO: Should we do some kind of check here to see it's all good before we resolve??
